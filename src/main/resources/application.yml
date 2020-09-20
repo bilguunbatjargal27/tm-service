@@ -1,0 +1,15 @@
+
+spring:
+  application:
+    name: tm-service
+  datasource:
+    url: jdbc:mysql://localhost/comproTM
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+server:
+  port: 8002
