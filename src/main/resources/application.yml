@@ -3,13 +3,13 @@ spring:
   application:
     name: tm-service
   datasource:
-    url: jdbc:mysql://localhost/comproTM
-    username: root
-    password: password
+    url: jdbc:mysql://localhost/comproTM?serverTimezone=GMT-6
+    username: EA
+    password: cs544
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 server:
   port: 8002
