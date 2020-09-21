@@ -3,9 +3,9 @@ spring:
   application:
     name: tm-service
   datasource:
-    url: jdbc:mysql://localhost/comproTM?serverTimezone=GMT-6
-    username: EA
-    password: cs544
+    url: jdbc:mysql://localhost/comproTM
+    username: root
+    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true

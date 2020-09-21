@@ -1,5 +1,6 @@
 package cs.mum.edu.orangeteam.compro.Service;
 
+import cs.mum.edu.orangeteam.compro.Model.TMInstructor;
 import cs.mum.edu.orangeteam.compro.Repository.TMIstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,30 @@ import java.util.List;
 public class TMIstructorServiceImpl implements TMIstructorService{
     @Autowired
     private TMIstructorRepository tmIstructorRepository;
+    @Override
+    public List<TMInstructor> getTMInstructors() {
+        return tmIstructorRepository.findAll();
+    }
 
     @Override
-    public List<Student> getAllStudents() {
-        return null;
+    public TMInstructor findTMInstructorById(Long id) {
+       if(tmIstructorRepository.findById(Math.toIntExact(id)).isPresent())
+           return tmIstructorRepository.findById(Math.toIntExact(id)).get();
+       return null;
+    }
+
+    @Override
+    public TMInstructor addTMInstructor(TMInstructor tmInstructor) {
+        return tmIstructorRepository.save(tmInstructor);
+    }
+
+    @Override
+    public TMInstructor updateTMInstructor(TMInstructor tmInstructor) {
+        return tmIstructorRepository.save(tmInstructor);
+    }
+
+    @Override
+    public void deleteTMInstructor(Long id) {
+        tmIstructorRepository.deleteById(Math.toIntExact(id));
     }
 }

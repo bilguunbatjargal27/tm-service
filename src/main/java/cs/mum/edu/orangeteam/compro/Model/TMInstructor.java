@@ -3,6 +3,7 @@ package cs.mum.edu.orangeteam.compro.Model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class TMInstructor {
@@ -19,7 +20,6 @@ public class TMInstructor {
     private Address address;
     @OneToMany(mappedBy = "tmInstructor")
     private Collection<TMRecord> tmRecords;
-
     public String getName() {
         return name;
     }

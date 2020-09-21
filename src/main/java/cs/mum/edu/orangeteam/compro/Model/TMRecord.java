@@ -36,4 +36,5 @@ public class TMRecord {
     public void setTmInstructor(TMInstructor tmInstructor) {
         this.tmInstructor = tmInstructor;
     }
+
 }
