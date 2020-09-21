@@ -19,18 +19,18 @@ public class TMRecordServiceImpl implements TMRecordService {
         return tmRecordRepository.findAll();
     }
     @Override
-    public TMRecord getTMRecord(TMRecord tmRecord) {
-        return null;
+    public TMRecord addTMRecord(TMRecord tmRecord) {
+        return tmRecordRepository.save(tmRecord);
     }
 
     @Override
     public TMRecord updateTMRecord(TMRecord tmRecord) {
-        return null;
+        return tmRecordRepository.save(tmRecord);
     }
 
     @Override
     public void deleteTMRecord(Long id) {
-
+    tmRecordRepository.deleteById(id);
     }
 
     @Override

@@ -20,8 +20,8 @@ public class TMIstructorServiceImpl implements TMIstructorService{
 
     @Override
     public TMInstructor findTMInstructorById(Long id) {
-       if(tmIstructorRepository.findById(Math.toIntExact(id)).isPresent())
-           return tmIstructorRepository.findById(Math.toIntExact(id)).get();
+       if(tmIstructorRepository.findById(id).isPresent())
+           return tmIstructorRepository.findById(id).get();
        return null;
     }
 
@@ -37,6 +37,6 @@ public class TMIstructorServiceImpl implements TMIstructorService{
 
     @Override
     public void deleteTMInstructor(Long id) {
-        tmIstructorRepository.deleteById(Math.toIntExact(id));
+        tmIstructorRepository.deleteById(id);
     }
 }

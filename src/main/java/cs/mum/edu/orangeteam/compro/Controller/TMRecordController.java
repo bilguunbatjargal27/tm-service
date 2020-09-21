@@ -24,7 +24,7 @@ public class TMRecordController {
     @GetMapping("/add")
     public TMRecord addTMRecord(@RequestBody final TMRecord tmRecord) {
 
-        return tmRecordService.getTMRecord(tmRecord);
+        return tmRecordService.addTMRecord(tmRecord);
     }
     @GetMapping("update")
     public TMRecord updateTMRecord(@RequestBody final TMRecord tmRecord) {
