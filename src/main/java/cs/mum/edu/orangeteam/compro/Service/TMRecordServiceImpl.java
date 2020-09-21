@@ -18,24 +18,31 @@ public class TMRecordServiceImpl implements TMRecordService {
     public List<TMRecord> getTMRecords() {
         return tmRecordRepository.findAll();
     }
-    @Override
-    public TMRecord getTMRecord(TMRecord tmRecord) {
-        return null;
-    }
 
     @Override
     public TMRecord updateTMRecord(TMRecord tmRecord) {
-        return null;
+        return  tmRecordRepository.save(tmRecord);
     }
 
     @Override
     public void deleteTMRecord(Long id) {
-
+tmRecordRepository.deleteById(id);
     }
 
     @Override
     public TMRecord findTMRecordById(Long id) {
-        if(tmRecordRepository.findById(id).isPresent()) return tmRecordRepository.findById(id).get();
         return null;
     }
+
+    @Override
+    public TMRecord getTMRecord(TMRecord tmRecord) {
+        return tmRecordRepository.save(tmRecord);
+    }
+
+    @Override
+    public TMRecord addTMRecord(TMRecord tmRecord) {
+        return tmRecordRepository.save(tmRecord);
+    }
+
+
 }

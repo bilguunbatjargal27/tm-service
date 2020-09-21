@@ -3,7 +3,7 @@ spring:
   application:
     name: tm-service
   datasource:
-    url: jdbc:mysql://localhost/comproTM
+    url: jdbc:mysql://localhost/compro
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,3 +13,11 @@ spring:
       ddl-auto: update
 server:
   port: 8002
+  eureka:
+    client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+        defaultZone: http://localhost:8000/eureka/
+    instance:
+      hostname: localhost

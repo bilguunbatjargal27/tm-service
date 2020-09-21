@@ -21,16 +21,16 @@ public class TMRecordController {
 
         return tmRecordService.findTMRecordById(id);
     }
-    @GetMapping("/add")
+    @PostMapping("/add")
     public TMRecord addTMRecord(@RequestBody final TMRecord tmRecord) {
 
-        return tmRecordService.getTMRecord(tmRecord);
+        return tmRecordService.addTMRecord(tmRecord);
     }
-    @GetMapping("update")
+    @PatchMapping("update")
     public TMRecord updateTMRecord(@RequestBody final TMRecord tmRecord) {
         return tmRecordService.updateTMRecord(tmRecord);
     }
-    @GetMapping("delete/{id}")
+    @DeleteMapping("delete/{id}")
     public boolean deleteTMRecord(@PathVariable ("id") Long id) {
        TMRecord tmRecord=tmRecordService.findTMRecordById(id);
         if(tmRecord==null) return false;

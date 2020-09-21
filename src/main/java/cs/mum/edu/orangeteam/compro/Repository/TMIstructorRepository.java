@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TMIstructorRepository extends JpaRepository<TMInstructor,Integer> {
+public interface TMIstructorRepository extends JpaRepository<TMInstructor,Long> {
 }

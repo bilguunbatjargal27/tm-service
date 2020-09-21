@@ -21,15 +21,15 @@ public List<TMInstructor> getAllTMInstructors(){
     public TMInstructor getTMInstructorById(@PathVariable Long id) {
        return tmIstructorService.findTMInstructorById(id);
     }
-    @GetMapping("/add")
+    @PostMapping("/add")
     public TMInstructor addTMInstructor(@RequestBody final TMInstructor tmInstructor) {
         return tmIstructorService.addTMInstructor(tmInstructor);
     }
-    @GetMapping("update")
+    @PatchMapping  ("update")
     public TMInstructor updateTMInstructor(@RequestBody final TMInstructor tmInstructor) {
         return tmIstructorService.updateTMInstructor(tmInstructor);
     }
-    @GetMapping("delete/{id}")
+    @DeleteMapping("delete/{id}")
     public boolean deleteTMInstructor(@PathVariable ("id") Long id) {
        TMInstructor tmInstructor=tmIstructorService.findTMInstructorById(id);
        if(tmInstructor==null) return false;
