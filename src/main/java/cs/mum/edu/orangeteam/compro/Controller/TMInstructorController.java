@@ -38,17 +38,15 @@ public class TMInstructorController {
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<CastStudent>>() {
                 });
         List<CastStudent> list = students.getBody();
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+        headers.add("Content-Type", "application/json");
 
-//        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-//        headers.add("HeaderName", "value");
-//        headers.add("Content-Type", "application/json");
-//
-//        for(CastStudent student: list){
-//            student.setName(student.getName() + " UPDATED FROM TM SERVICE");
-//            HttpEntity<?> httpEntity = new HttpEntity<CastStudent>(student, headers);
-//            restTemplate.exchange(url + "/update", HttpMethod.PUT, httpEntity, CastStudent.class);
-//        }
-//        System.out.println(list.toString());
+        for(CastStudent student: list){
+            student.setName(student.getName() + " UPDATED FROM TM SERVICE");
+            HttpEntity<?> httpEntity = new HttpEntity<CastStudent>(student, headers);
+            restTemplate.exchange(url + "/update", HttpMethod.PUT, httpEntity, CastStudent.class);
+        }
+        System.out.println(list.toString());
         return list;
     }
 
