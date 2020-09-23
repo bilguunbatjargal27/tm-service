@@ -18,6 +18,7 @@ public class TMRecordServiceImpl implements TMRecordService {
     public List<TMRecord> getTMRecords() {
         return tmRecordRepository.findAll();
     }
+
     @Override
     public TMRecord addTMRecord(TMRecord tmRecord) {
         return tmRecordRepository.save(tmRecord);
@@ -35,7 +36,14 @@ public class TMRecordServiceImpl implements TMRecordService {
 
     @Override
     public TMRecord findTMRecordById(Long id) {
-        if(tmRecordRepository.findById(id).isPresent()) return tmRecordRepository.findById(id).get();
         return null;
     }
+
+    @Override
+    public TMRecord getTMRecord(TMRecord tmRecord) {
+        return tmRecordRepository.save(tmRecord);
+    }
+
+
+
 }

@@ -3,12 +3,13 @@ package cs.mum.edu.orangeteam.compro.Model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+
 
 @Entity
 public class TMInstructor {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Temporal(TemporalType.DATE)
@@ -59,4 +60,7 @@ public class TMInstructor {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+
+
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 public class TMRecord {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date checkingDate;
@@ -14,6 +14,7 @@ public class TMRecord {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private TMInstructor tmInstructor;
     public Date getCheckingDate() {
+
         return checkingDate;
     }
 
