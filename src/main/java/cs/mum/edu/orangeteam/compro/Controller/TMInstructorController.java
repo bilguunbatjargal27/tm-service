@@ -8,17 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/tmInstructor/tmInstructors")
-public class TMInstructorController {
+public class  TMInstructorController {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -27,9 +30,11 @@ public class TMInstructorController {
     private TMIstructorService tmIstructorService;
 
     @GetMapping("")
-    public List<TMInstructor> getAllTMInstructors() {
-        return tmIstructorService.getTMInstructors();
+    public ResponseEntity<?> getAllTMInstructors() {
+        List<TMInstructor> TmInstructor = (List<TMInstructor>) tmIstructorService.getTMInstructors();
+        return ResponseEntity.ok(TmInstructor);
     }
+
 
     @GetMapping("students")
     public List<CastStudent> getAllStudents() {
@@ -60,25 +65,33 @@ public class TMInstructorController {
     }
 
     @GetMapping("/{id}")
-    public TMInstructor getTMInstructorById(@PathVariable Long id) {
-        return tmIstructorService.findTMInstructorById(id);
+    public ResponseEntity<?> getTMInstructorById(@PathVariable Long id) {
+        TMInstructor TmInstructor= tmIstructorService.findTMInstructorById(id);
+        return ResponseEntity.ok(TmInstructor);
     }
 
     @PostMapping("/add")
-    public TMInstructor addTMInstructor(@RequestBody final TMInstructor tmInstructor) {
-        return tmIstructorService.addTMInstructor(tmInstructor);
+    public ResponseEntity<?> addTMInstructor(@Valid @RequestBody final TMInstructor tmInstructor, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+         tmIstructorService.addTMInstructor(tmInstructor);
+        return ResponseEntity.badRequest().body("TMInstructor is created successfully");
     }
 
-    @PatchMapping("update")
-    public TMInstructor updateTMInstructor(@RequestBody final TMInstructor tmInstructor) {
-        return tmIstructorService.updateTMInstructor(tmInstructor);
+    @PatchMapping("/update")
+    public ResponseEntity<?> updateTMInstructor(@Valid @RequestBody final TMInstructor tmInstructor, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+       TMInstructor tm=tmIstructorService.updateTMInstructor(tmInstructor);
+        return  ResponseEntity.status(HttpStatus.OK).body("TMInstructor is updated successfully");
     }
-
-    @DeleteMapping("delete/{id}")
-    public boolean deleteTMInstructor(@PathVariable("id") Long id) {
-        TMInstructor tmInstructor = tmIstructorService.findTMInstructorById(id);
-        if (tmInstructor == null) return false;
+     @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteTMInstructor(@PathVariable("id") Long id){
+         TMInstructor tmInstructor = tmIstructorService.findTMInstructorById(id);
+        if(tmInstructor == null) return ResponseEntity.badRequest().body("There is no TMInstructor has an id equal to" + id);
         tmIstructorService.deleteTMInstructor(id);
-        return true;
+        return ResponseEntity.status(HttpStatus.OK).body("TMInstructor is deleted successfully");
     }
 }
