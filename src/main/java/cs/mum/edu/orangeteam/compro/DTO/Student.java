@@ -1,20 +1,20 @@
-package cs.mum.edu.orangeteam.compro.Model.caster;
+package cs.mum.edu.orangeteam.compro.DTO;
 
 import java.util.Date;
 
-public class CastStudent {
+public class Student {
 
     private Long id;
     private String name;
     private Date enrollmentDate;
-    private CastAddress address;
+    private Address address;
     private double gpa;
     private Long tmInstructor;
 
-    public CastStudent() {
+    public Student() {
     }
 
-    public CastStudent(Long id, String name, Date enrollmentDate, CastAddress address, double gpa, Long tmInstructor) {
+    public Student(Long id, String name, Date enrollmentDate, Address address, double gpa, Long tmInstructor) {
         this.id = id;
         this.name = name;
         this.enrollmentDate = enrollmentDate;
@@ -47,11 +47,11 @@ public class CastStudent {
         this.enrollmentDate = enrollmentDate;
     }
 
-    public CastAddress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(CastAddress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

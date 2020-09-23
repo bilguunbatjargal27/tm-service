@@ -13,6 +13,11 @@ public class TMRecord {
     private Integer numberOfTMchecking;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private TMInstructor tmInstructor;
+    private Long studentId;
+
+    public TMRecord() {
+    }
+
     public Date getCheckingDate() {
 
         return checkingDate;
@@ -38,4 +43,11 @@ public class TMRecord {
         this.tmInstructor = tmInstructor;
     }
 
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
 }
