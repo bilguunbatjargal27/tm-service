@@ -11,7 +11,7 @@ public class TMRecord {
     @Temporal(TemporalType.DATE)
     private Date checkingDate;
     private Integer numberOfTMchecking;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private TMInstructor tmInstructor;
     private Long studentId;
 

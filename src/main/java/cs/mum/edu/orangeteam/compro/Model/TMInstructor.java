@@ -1,6 +1,7 @@
 package cs.mum.edu.orangeteam.compro.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ public class TMInstructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "name can not be empty")
     private String name;
     @Temporal(TemporalType.DATE)
     private Date hireDate;
@@ -21,6 +23,15 @@ public class TMInstructor {
     private Address address;
     @OneToMany(mappedBy = "tmInstructor")
     private Collection<TMRecord> tmRecords;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

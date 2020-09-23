@@ -1,7 +1,7 @@
 package cs.mum.edu.orangeteam.compro.Controller;
 
+import cs.mum.edu.orangeteam.compro.DTO.Student;
 import cs.mum.edu.orangeteam.compro.Model.TMInstructor;
-import cs.mum.edu.orangeteam.compro.Model.caster.CastStudent;
 import cs.mum.edu.orangeteam.compro.Service.TMIstructorService;
 import javassist.expr.Cast;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,30 +37,30 @@ public class  TMInstructorController {
 
 
     @GetMapping("students")
-    public List<CastStudent> getAllStudents() {
+    public List<Student> getAllStudents() {
         String url = "http://course-service/course/students";
-        ResponseEntity<List<CastStudent>> students = restTemplate.exchange(url,
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<CastStudent>>() {
+        ResponseEntity<List<Student>> students = restTemplate.exchange(url,
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
                 });
-        List<CastStudent> list = students.getBody();
+        List<Student> list = students.getBody();
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Content-Type", "application/json");
 
-        for(CastStudent student: list){
+        for(Student student: list){
             student.setName(student.getName() + " UPDATED FROM TM SERVICE");
-            HttpEntity<?> httpEntity = new HttpEntity<CastStudent>(student, headers);
-            restTemplate.exchange(url + "/update", HttpMethod.PUT, httpEntity, CastStudent.class);
+            HttpEntity<?> httpEntity = new HttpEntity<Student>(student, headers);
+            restTemplate.exchange(url + "/update", HttpMethod.PUT, httpEntity, Student.class);
         }
         return list;
     }
 
     @GetMapping("studentsByInstructorId/{id}")
-    public List<CastStudent> getAllStudentsByInstructor(@PathVariable("id") Long id) {
+    public List<Student> getAllStudentsByInstructor(@PathVariable("id") Long id) {
         String url = "http://course-service/course/students/bytminstructor/";
-        ResponseEntity<List<CastStudent>> students = restTemplate.exchange(url + id,
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<CastStudent>>() {
+        ResponseEntity<List<Student>> students = restTemplate.exchange(url + id,
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
                 });
-        List<CastStudent> list = students.getBody();
+        List<Student> list = students.getBody();
         return list;
     }
 
