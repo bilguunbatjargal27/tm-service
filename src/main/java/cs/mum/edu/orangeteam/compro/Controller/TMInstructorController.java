@@ -35,10 +35,10 @@ public class  TMInstructorController {
         return ResponseEntity.ok(TmInstructor);
     }
 
-
+    // testing our application to take all students and update their names
     @GetMapping("students")
     public List<Student> getAllStudents() {
-        String url = "http://course-service/course/students";
+        String url = "course-service/course/students";
         ResponseEntity<List<Student>> students = restTemplate.exchange(url,
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
                 });
@@ -55,13 +55,13 @@ public class  TMInstructorController {
     }
 
     @GetMapping("studentsByInstructorId/{id}")
-    public List<Student> getAllStudentsByInstructor(@PathVariable("id") Long id) {
-        String url = "http://course-service/course/students/bytminstructor/";
+    public ResponseEntity<?> getAllStudentsByInstructor(@PathVariable("id") Long id) {
+        String url = "course-service/course/students/bytminstructor/";
         ResponseEntity<List<Student>> students = restTemplate.exchange(url + id,
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
                 });
-        List<Student> list = students.getBody();
-        return list;
+
+        return ResponseEntity.ok().body(students.getBody());
     }
 
     @GetMapping("/{id}")
